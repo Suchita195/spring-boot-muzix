@@ -47,5 +47,11 @@ public class TrackServiceImpl implements TrackService {
     return trackRepository.findById(id).orElse(null);
   }
 
+  @Override
+  public Track getTrackByName(String name) {
+    return trackRepository.findTrackByName(name);
   }
+
+
+}
 

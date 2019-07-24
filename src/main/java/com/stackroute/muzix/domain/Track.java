@@ -5,20 +5,24 @@ import javax.persistence.Id;
 
 @Entity
 public class Track {
+  //properties
   @Id
   int id;
   String name;
   String comment;
 
+  //unparameterized constructor
   public Track() {
   }
 
+  //parameterized constructor
   public Track(int id, String name, String comment) {
     this.id = id;
     this.name = name;
     this.comment = comment;
   }
 
+  //getters and setters
   public int getId() {
     return id;
   }
