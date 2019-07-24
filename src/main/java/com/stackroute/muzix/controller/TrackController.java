@@ -1,6 +1,7 @@
 package com.stackroute.muzix.controller;
 
 import com.stackroute.muzix.domain.Track;
+import com.stackroute.muzix.exceptions.GlobalExceptionHandler;
 import com.stackroute.muzix.exceptions.TrackAlreadyExistsException;
 import com.stackroute.muzix.exceptions.TrackNotFoundException;
 import com.stackroute.muzix.service.TrackService;
@@ -13,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value="api/v1")
-public class TrackController {
+public class TrackController extends GlobalExceptionHandler {
   TrackService trackService;
 
   @Autowired
@@ -23,15 +24,15 @@ public class TrackController {
 
   //For save track
   @PostMapping("track")
-  public ResponseEntity<?> saveTrack(@RequestBody Track track) {
+  public ResponseEntity<?> saveTrack (@RequestBody Track track) throws TrackAlreadyExistsException{
     ResponseEntity responseEntity;
-    try {
+    //try
         trackService.saveTrack(track);
         responseEntity = new ResponseEntity<String>("successfully created", HttpStatus.CREATED);
-    }
-      catch (TrackAlreadyExistsException e) {
-      responseEntity = new ResponseEntity<String>(e.getMessage(), HttpStatus.CONFLICT);
-    }
+
+      //catch (TrackAlreadyExistsException e) {
+      //responseEntity = new ResponseEntity<String>(e.getMessage(), HttpStatus.CONFLICT);
+
     return responseEntity;
   }
 
@@ -39,13 +40,12 @@ public class TrackController {
   @PutMapping("track")
   public ResponseEntity<?> updateTrack(@RequestBody Track track) {
     ResponseEntity responseEntity;
-    try {
+    //try {
         trackService.updateTrack(track);
         responseEntity = new ResponseEntity<String>("successfully updated", HttpStatus.OK);
-      }
-    catch (Exception e) {
-      responseEntity = new ResponseEntity<String>(e.getMessage(), HttpStatus.CONFLICT);
-    }
+
+    //catch (Exception e) {
+      //responseEntity = new ResponseEntity<String>(e.getMessage(), HttpStatus.CONFLICT);
     return responseEntity;
   }
 
@@ -67,24 +67,21 @@ public class TrackController {
 
   //To retrieve the record on the basis of id
   @GetMapping("track/{id}")
-  public ResponseEntity getTrackById(@PathVariable int id)
+  public ResponseEntity getTrackById (@PathVariable int id) throws TrackNotFoundException
   {
     ResponseEntity responseEntity;
-    try {
+    //try {
       responseEntity = new ResponseEntity<Track>(trackService.getTrackById(id),HttpStatus.OK);
-    }
-    catch (TrackNotFoundException e) {
-      responseEntity = new ResponseEntity<String>(e.getMessage(), HttpStatus.CONFLICT);
-    }
+    //catch (TrackNotFoundException e) {
+      //responseEntity = new ResponseEntity<String>(e.getMessage(), HttpStatus.CONFLICT);
+    //}
     return responseEntity;
   }
 
   //To retrieve the record on the basis of name
-  @GetMapping("track/{name}")
+  @GetMapping("trackByName/{name}")
   public ResponseEntity getTrackByName(@PathVariable String name)
   {
     return new ResponseEntity<Track>(trackService.getTrackByName(name),HttpStatus.OK);
   }
-
-
 }
