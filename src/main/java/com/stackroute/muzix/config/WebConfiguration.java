@@ -4,6 +4,8 @@ import org.h2.server.web.WebServlet;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.event.ContextRefreshedEvent;
+import org.springframework.context.event.EventListener;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.spi.DocumentationType;
@@ -31,5 +33,12 @@ public class WebConfiguration {
                 .select().apis(RequestHandlerSelectors.basePackage("com.stackroute.controller"))
                 .paths(regex("/track.*"))
                 .build();
+    }
+
+    //Application Event Listener
+    @EventListener
+    public void onApplicationEvent (ContextRefreshedEvent event) {
+        System.out.print("context refreshed event fired: ");
+        System.out.println(event);
     }
 }
