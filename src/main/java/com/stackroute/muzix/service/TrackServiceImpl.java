@@ -29,10 +29,7 @@ public class TrackServiceImpl implements TrackService {
     }
     else {
       Track savedTrack = trackRepository.save(track);
-//    if(savedTrack==null)
-//    {
-//      throw new TrackAlreadyExistsException("Track already exists");
-//    }
+
       return savedTrack;
     }
   }
