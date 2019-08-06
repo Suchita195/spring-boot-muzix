@@ -23,13 +23,13 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
+                <!--dependency for jpa repository-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 			<version>2.1.6.RELEASE</version>
 		</dependency>
-		
+		<!--dependency for mysql connector-->
 	        <dependency>
                         <groupId>mysql</groupId>
                         <artifactId>mysql-connector-java</artifactId>
@@ -54,7 +54,7 @@
 			<version>1.18.8</version>
 			<scope>provided</scope>
 		</dependency>
-
+                <!--dependency for exception handling-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-hateoas</artifactId>
