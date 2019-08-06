@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @Service
 public class TrackServiceImpl implements TrackService {
-  TrackRepository trackRepository;
+  private TrackRepository trackRepository;
 
   @Autowired
   public TrackServiceImpl(TrackRepository trackRepository)
@@ -29,10 +29,6 @@ public class TrackServiceImpl implements TrackService {
     }
     else {
       Track savedTrack = trackRepository.save(track);
-//    if(savedTrack==null)
-//    {
-//      throw new TrackAlreadyExistsException("Track already exists");
-//    }
       return savedTrack;
     }
   }
