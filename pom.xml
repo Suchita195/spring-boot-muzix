@@ -43,7 +43,7 @@
 			<version>1.18.8</version>
 			<scope>provided</scope>
 		</dependency>
-
+               <!--dependency for exception handling-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-hateoas</artifactId>
