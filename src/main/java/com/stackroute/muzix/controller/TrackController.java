@@ -12,7 +12,7 @@ import java.util.List;
 @RestController
 @RequestMapping(value="api/v1")
 public class TrackController {
-  TrackService trackService;
+  private TrackService trackService;
 
   @Autowired
   public TrackController(TrackService trackService) {
