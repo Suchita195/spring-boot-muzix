@@ -24,7 +24,6 @@ public class TrackController {
 
   @PostMapping("track")
   public ResponseEntity<?> saveTrack(@RequestBody Track track) {
-    ResponseEntity responseEntity;
     try {
 
       if (trackService.getTrackById(track.getId())!=null) {
