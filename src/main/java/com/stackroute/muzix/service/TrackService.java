@@ -9,7 +9,7 @@ public interface TrackService {
 
   public List<Track> getAllTracks();
 
-  public void deleteTrack(int id);
+  public Track deleteTrack(int id);
 
   public Track getTrackById(int id);
 }
