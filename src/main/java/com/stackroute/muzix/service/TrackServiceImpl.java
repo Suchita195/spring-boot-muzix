@@ -37,8 +37,9 @@ public class TrackServiceImpl implements TrackService {
 
     if(track.isPresent()) {
       trackRepository.deleteById(id);
+      return track.get();
     } else {
-      //throw new RecordNotFoundException("No employee record exist for given id");
+      return null;
     }
   }
 
