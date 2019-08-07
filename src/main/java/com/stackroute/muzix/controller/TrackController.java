@@ -61,8 +61,6 @@ public class TrackController extends GlobalExceptionHandler {
   @GetMapping("track/{id}")
   public ResponseEntity getTrackById (@PathVariable int id) throws TrackNotFoundException
   {
-    ResponseEntity responseEntity;
-    
       responseEntity = new ResponseEntity<Track>(trackService.getTrackById(id),HttpStatus.OK);
     
     return responseEntity;
