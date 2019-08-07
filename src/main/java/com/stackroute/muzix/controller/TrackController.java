@@ -15,6 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping(value="api/v1")
 public class TrackController extends GlobalExceptionHandler {
+  private ResponseEntity responseEntity;
   private TrackService trackService;
 
   @Autowired
@@ -25,7 +26,6 @@ public class TrackController extends GlobalExceptionHandler {
   //For save track
   @PostMapping("track")
   public ResponseEntity<?> saveTrack (@RequestBody Track track) throws TrackAlreadyExistsException{
-    ResponseEntity responseEntity;
    
         trackService.saveTrack(track);
         responseEntity = new ResponseEntity<String>("successfully created", HttpStatus.CREATED);
@@ -36,7 +36,7 @@ public class TrackController extends GlobalExceptionHandler {
   //For update track
   @PutMapping("track")
   public ResponseEntity<?> updateTrack(@RequestBody Track track) {
-    ResponseEntity responseEntity;
+    
     
         trackService.updateTrack(track);
         responseEntity = new ResponseEntity<String>("successfully updated", HttpStatus.OK);
@@ -65,7 +65,6 @@ public class TrackController extends GlobalExceptionHandler {
   @GetMapping("track/{id}")
   public ResponseEntity getTrackById (@PathVariable int id) throws TrackNotFoundException
   {
-    ResponseEntity responseEntity;
     
       responseEntity = new ResponseEntity<Track>(trackService.getTrackById(id),HttpStatus.OK);
    
