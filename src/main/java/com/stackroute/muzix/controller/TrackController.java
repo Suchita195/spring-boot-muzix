@@ -15,6 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping(value="api/v1")
 public class TrackController extends GlobalExceptionHandler {
+  private ResponseEntity responseEntity;
   private TrackService trackService;
 
   @Autowired
@@ -25,27 +26,18 @@ public class TrackController extends GlobalExceptionHandler {
   //For save the track
   @PostMapping("track")
   public ResponseEntity<?> saveTrack (@RequestBody Track track) throws TrackAlreadyExistsException{
-    ResponseEntity responseEntity;
-    //try
         trackService.saveTrack(track);
         responseEntity = new ResponseEntity<String>("successfully created", HttpStatus.CREATED);
-
-      //catch (TrackAlreadyExistsException e) {
-      //responseEntity = new ResponseEntity<String>(e.getMessage(), HttpStatus.CONFLICT);
-
-    return responseEntity;
+      return responseEntity;
   }
 
   //For update the track
   @PutMapping("track")
   public ResponseEntity<?> updateTrack(@RequestBody Track track) {
-    ResponseEntity responseEntity;
-    //try {
+   
         trackService.updateTrack(track);
         responseEntity = new ResponseEntity<String>("successfully updated", HttpStatus.OK);
 
-    //catch (Exception e) {
-      //responseEntity = new ResponseEntity<String>(e.getMessage(), HttpStatus.CONFLICT);
     return responseEntity;
   }
 
@@ -70,20 +62,11 @@ public class TrackController extends GlobalExceptionHandler {
   public ResponseEntity getTrackById (@PathVariable int id) throws TrackNotFoundException
   {
     ResponseEntity responseEntity;
-    //try {
+    
       responseEntity = new ResponseEntity<Track>(trackService.getTrackById(id),HttpStatus.OK);
-    //catch (TrackNotFoundException e) {
-      //responseEntity = new ResponseEntity<String>(e.getMessage(), HttpStatus.CONFLICT);
-    //}
+    
     return responseEntity;
   }
-
-  //To retrieve the record on the basis of name
-//  @GetMapping("trackByName/{name}")
-//  public ResponseEntity getTrackByName(@PathVariable String name)
-//  {
-//    return new ResponseEntity<Track>(trackService.getTrackByName(name),HttpStatus.OK);
-//  }
 
   //For the mapping of the top tracks from last fm
   @GetMapping("toptrack")
