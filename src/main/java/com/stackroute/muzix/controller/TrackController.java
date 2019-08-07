@@ -45,10 +45,9 @@ public class TrackController {
   }
 
   @DeleteMapping("track/{id}")
-  public HttpStatus deleteTrack(@PathVariable int id)
+  public Track deleteTrack(@PathVariable int id)
   {
-    trackService.deleteTrack(id);
-    return HttpStatus.FORBIDDEN;
+    return trackService.deleteTrack(id);
   }
 
   @GetMapping("id")
